@@ -5,7 +5,37 @@
 
 using namespace :: std;
 char repo[3][3];
+int i, j;
+int turn = 1;
+sf::Sprite empty;
+sf::Texture emptytexture;
+sf::Sprite selected[9];
 
+
+
+//bool grid[9];
+/*void clearing(){
+	for (i = 0; i < 9; i++){
+
+	}
+}*/
+
+
+
+bool grid[9] = { false, false, false, false, false, false, false, false, false };
+void clearing(){
+	if (!emptytexture.loadFromFile("empty.png")){
+		cout << "Texture empty is missing";
+	}
+	empty.setTexture(emptytexture);
+
+	for (i = 0; i < 9; i++){
+		grid[i] = false;
+		turn = 1;
+		selected[i] = empty;
+	}
+
+}
 char winner(){
 	//if (repo[0] == 'x' && repo[1] == 'x' && repo[2] == 'x'){
 		
@@ -34,40 +64,15 @@ char winner(){
 	//	return 'x';//diag r
 	//}
 	if (repo[1][1] == 'x' && repo[1][1] == repo[0][0] && repo[1][1] == repo[2][2]){
-		return 'x';//diag r
+		return 'x';//
 	}
 	if (repo[1][1] == 'x' && repo[1][1] == repo[0][2] && repo[1][1] == repo[2][0]){
 		return 'x';//diag r
 	}
-	if (repo[0][0] == 'x' && repo[0][0] == repo[0][1] && repo[0][0]==repo[0][2]){
-		return 'x';	}//Row 1
-	//if (repo[0][0] == 'x' && repo[0][0] == repo[1][1] && repo[0][0] == repo[2][2]){
-	//	return 'x';//diag l
-	//}
-	if (repo[0][0] == 'x' && repo[0][0] == repo[1][0] && repo[0][0] == repo[2][0]){
-		return 'x';//column 1
-	}
-	if (repo[0][1] == 'x' && repo[0][1] == repo[1][1] && repo[0][1] == repo[2][1]){
-		return 'x';//colum 2
-	}
-	if (repo[0][2] == 'x' && repo[0][2] == repo[1][2] && repo[0][2] == repo[2][2]){
-		return 'x';//column 3
-	}
-	if (repo[1][0] == 'x' && repo[1][0] == repo[1][1] && repo[1][0] == repo[1][2]){
-		return 'x';//row 2
-	}
-	if (repo[2][0] == 'x' && repo[2][0] == repo[2][1] && repo[2][0] == repo[2][2]){
-		return 'x';//row 3
-	}
-	//if (repo[0][2] == 'x' && repo[0][2] == repo[1][1] && repo[0][2] == repo[2][0]){
-	//	return 'x';//diag r
-	//}
-	if (repo[1][1] == 'x' && repo[1][1] == repo[0][0] && repo[1][1] == repo[2][2]){
-		return 'x';//diag r
-	}
 	if (repo[1][1] == 'x' && repo[1][1] == repo[0][2] && repo[1][1] == repo[2][0]){
-		return 'x';//diag r
+		return 'x';//diag l
 	}
+	
 
 	// OOOO
 	if (repo[0][0] == 'o' && repo[0][0] == repo[0][1] && repo[0][0] == repo[0][2]){
@@ -98,8 +103,10 @@ char winner(){
 		return 'o';//diag r
 	}
 	if (repo[1][1] == 'o' && repo[1][1] == repo[0][2] && repo[1][1] == repo[2][0]){
-		return 'o';//diag r
+		return 'o';//diag l
 	}
+
+	
 
 }
 	
@@ -118,11 +125,13 @@ int main(){
 	sf::Texture textureo;
 	sf::Texture texturex;
 	sf::Vector2i m_pos;
-	sf::Sprite selected[9];
+	
 	sf::Sprite sxo;
 	
 	char play;
-	int turn = 1,i; 
+	int i; 
+
+	
 
 	bool start = false;
 	bool win = false;
@@ -142,11 +151,11 @@ int main(){
 	player2.setStyle(sf::Text::Regular);
 	player2.setCharacterSize(30);
 	player2.setFont(font);
-
+	
 
 	int bound = player1.getLocalBounds().width;
 
-	bool grid[] = { false, false, false, false, false, false, false, false, false };
+	
 
 	window.create(sf::VideoMode(dimension.x, dimension.y), "My Game");
 	if (!texture.loadFromFile("bg.jpg"))
@@ -322,22 +331,23 @@ int main(){
 			if (winner() == 'x'){
 				win = true;
 				cout << "THE WINNER IS X";
+				clearing();
 
 			}
 			if (winner() == 'o'){
 				win = true;
 				cout << "THE WINNER IS O";
-
+				clearing();
 			}
 		}
 
-		if (grid[4] == true){
+		/*if (grid[4] == true){
 			for (i = 0; i < 9; i++){
 				cout << repo[i]<<"\n";
 				
 			}
 			grid[4] = false;
-		}
+		}*/
 		window.draw(sprite);
 		for (i = 0; i < 9; i++){
 			window.draw(selected[i]);
