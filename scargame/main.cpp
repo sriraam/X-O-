@@ -20,25 +20,7 @@ sf::Sprite selected[9];
 
 bool grid[9] = { false, false, false, false, false, false, false, false, false };
 
-/*void buttonselection(){
-	sf::Event butevent;
 
-	sf::RectangleShape button;
-	button.setSize(sf::Vector2f(50, 20));
-	button.setPosition(100, 200);
-	but = true;
-	while (window.pollEvent(butevent)){
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-			m_pos.x = butevent.mouseButton.x;
-			m_pos.y = butevent.mouseButton.y;
-
-			if (m_pos.x<button.getPosition().x&&m_pos.x>button.getPosition().x + 50&&m_pos.y<){
-
-			}
-		}
-	}
-	
-}*/
 void clearing(){
 	
 				if (!emptytexture.loadFromFile("empty.png")){
@@ -177,6 +159,15 @@ int main(){
 	playero.setCharacterSize(30);
 	playero.setFont(font);
 	playero.setPosition(20, 20);
+
+
+	sf::Text playertie;
+	playertie.setString("The Game is Tie");
+	playertie.setColor(sf::Color::Black);
+	playertie.setStyle(sf::Text::Regular);
+	playertie.setCharacterSize(30);
+	playertie.setFont(font);
+	playertie.setPosition(20, 20);
 	
 	sf::Text reset;
 	reset.setString("Press SPACE BAR to Start");
@@ -435,19 +426,26 @@ int main(){
 			}
 			//window.draw(button);
 			if (tap == true){
-				
-				if (play=='o'){
-					button.setFillColor(sf::Color(255, 0, 0, 100));
-					window.draw(button);
-					window.draw(reset);
-					window.draw(playerx);
+				if (winner() != 's'){
+					if (play == 'o'){
+						button.setFillColor(sf::Color(255, 0, 0, 100));
+						window.draw(button);
+						window.draw(reset);
+						window.draw(playerx);
+					}
+					else 
+					{
+						button.setFillColor(sf::Color(0, 255, 0, 100));
+						window.draw(button);
+						window.draw(reset);
+						window.draw(playero);
+					}
 				}
-				else
-				{
-					button.setFillColor(sf::Color(0, 255, 0, 100));
+				else{
+					button.setFillColor(sf::Color(255, 255, 255, 100));
 					window.draw(button);
 					window.draw(reset);
-					window.draw(playero);
+					window.draw(playertie);
 				}
 			}
 			window.display();
