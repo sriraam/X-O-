@@ -1,9 +1,11 @@
 #include<SFML/Graphics.hpp>
+#include<SFML/Window.hpp>
 #include<string>
 #include<iostream>
 
 
 using namespace :: std;
+
 
 sf::RenderWindow window;
 sf::Vector2i m_pos;
@@ -129,9 +131,13 @@ int main(){
 	sf::Texture textureo;
 	sf::Texture texturex;
 	
-	
+	sf::Image icon;
 
+	if (!icon.loadFromFile("xo_icon.jpg")){
+		cout << "Icon image not found";
+	}
 	
+	//sf::Window::setIcon(icon.)
 	sf::Sprite sxo;
 	
 	char play;

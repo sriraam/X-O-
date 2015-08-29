@@ -21,6 +21,7 @@ Global
 		{BEC3B4FA-022B-44AF-9E2E-E16735C257DB}.Release|Win32.Build.0 = Release|Win32
 		{BEC3B4FA-022B-44AF-9E2E-E16735C257DB}.Release|x64.ActiveCfg = Release|x64
 		{BEC3B4FA-022B-44AF-9E2E-E16735C257DB}.Release|x64.Build.0 = Release|x64
+		{BEC3B4FA-022B-44AF-9E2E-E16735C257DB}.Release|x64.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
